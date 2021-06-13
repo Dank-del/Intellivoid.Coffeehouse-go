@@ -33,7 +33,7 @@ func TestSentimentAnal(t *testing.T) {
 	}
 	if res.Success != true {
 		t.Log(res)
-		t.Errorf("[Intellivoid.Coffeehouse-go (sentenceSplit)] Failed request, response code: %d", res.ResponseCode)
+		t.Errorf("[Intellivoid.Coffeehouse-go (sentimentAnalysis)] Failed request, response code: %d", res.ResponseCode)
 
 
 	}
