@@ -12,11 +12,9 @@ func TestSpamPrediction(t *testing.T) {
 	res, err := spamPrediction.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err.Error())
-		t.Log(err)
 	}
 	if (*res).Success != true {
-		t.Log(res)
-		t.Errorf("[Intellivoid.Coffeehouse-go (emotionAnalysis)] Failed request, response code: %d", (*res).ResponseCode)
+		t.Errorf("[Intellivoid.Coffeehouse-go (spamPrediction)] Failed request, response code: %d", (*res).ResponseCode)
 
 	}
 }
