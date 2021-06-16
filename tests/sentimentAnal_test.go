@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,24 +18,28 @@
 package tests
 
 import (
-"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/sentimentAnalysis"
-"log"
-"testing"
+	"log"
+	"testing"
+
+	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/nlp/sentimentAnalysis"
 )
 
 func TestSentimentAnal(t *testing.T) {
-	coffeehouse.SetKey("<API Key here>")
-	res, err := sentimentAnalysis.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
+	coffeehouse.SetKey("3056b00704d72611e19e5c6df580798864155d9818175ffa1a4ae4a1c1496eeca48ad7aa9a625918431edbc1fa3ea712b2d591dd842e0bdb237c14a545cdd068")
+	// res, err := sentimentAnalysis.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
+	// res, err := sentimentAnalysis.DoRequest("After I've been accepted, I wanted to cry out from happiness", "en", "", "", "", "")
+	res, err := sentimentAnalysis.DoRequest("I'm very happy", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err.Error())
 		t.Log(err)
 	}
+
+	log.Println(res)
+
 	if res.Success != true {
 		t.Log(res)
 		t.Errorf("[Intellivoid.Coffeehouse-go (sentimentAnalysis)] Failed request, response code: %d", res.ResponseCode)
 
-
 	}
 }
-

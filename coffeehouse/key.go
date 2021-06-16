@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,17 @@
 
 package coffeehouse
 
+var coffeeHouseAPIKey string
 
-var CofeeHouseAPIKey string
+func SetKey(apiKey string) {
+	// check if we have already set the key or not
+	if len(coffeeHouseAPIKey) != 0 {
+		return
+	}
 
-func SetKey(apiKey string){
-	CofeeHouseAPIKey = apiKey
+	coffeeHouseAPIKey = apiKey
+}
+
+func GetKey() string {
+	return coffeeHouseAPIKey
 }

@@ -15,29 +15,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package tests
+package spamPrediction
 
-import (
-	"log"
-	"testing"
-
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/nlp/posTagging"
+const (
+	endpointurl = "https://api.intellivoid.net/" +
+		"coffeehouse/" +
+		"v1/nlp/" +
+		"spam_prediction/chatroom?" +
+		accessKeyKey + sAnd +
+		inputKey + sAnd +
+		languageKey + sAnd +
+		sentenceSplitKey + sAnd +
+		generalizationKey + sAnd +
+		generalizationSizeKey + sAnd +
+		generalizationIdKey + sFormat
 )
 
-func TestPOSTagging(t *testing.T) {
-	coffeehouse.SetKey("3056b00704d72611e19e5c6df580798864155d9818175ffa1a4ae4a1c1496eeca48ad7aa9a625918431edbc1fa3ea712b2d591dd842e0bdb237c14a545cdd068")
-	res, err := posTagging.TagPOSFull("hello, how are you?", "en", "0")
-	if err != nil {
-		log.Fatal(err.Error())
-		t.Log(err)
-	}
-
-	log.Println(res)
-
-	if res.Success != true {
-		t.Log(res)
-		t.Errorf("[Intellivoid.Coffeehouse-go (posTagging)] Failed request, response code: %d", res.ResponseCode)
-
-	}
-}
+// keys used in endpoint
+const (
+	accessKeyKey          = "access_key"
+	inputKey              = "input"
+	languageKey           = "language"
+	sentenceSplitKey      = "sentence_split"
+	generalizationKey     = "generalize"
+	generalizationSizeKey = "generalization_size"
+	generalizationIdKey   = "generalization_id"
+	sFormat               = "=%s"
+	sAnd                  = sFormat + "&"
+)

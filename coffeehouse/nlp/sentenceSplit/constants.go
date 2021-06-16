@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +15,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package sentimentAnalysis
+package sentenceSplit
 
 const (
-	endpointurl = "https://api.intellivoid.net/coffeehouse/v1/nlp/sentiment_analysis"
+	endpointurl = "https://api.intellivoid.net/coffeehouse/" +
+		"v1/nlp/sentence_split?" +
+		accessKeyKey + sAnd +
+		inputKey + sFormat
 )
 
-
+// keys used in endpoint
+const (
+	accessKeyKey = "access_key"
+	inputKey     = "input"
+	sFormat      = "=%s"
+	sAnd         = sFormat + "&"
+)

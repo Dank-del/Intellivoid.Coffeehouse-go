@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,48 +21,63 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 	"io/ioutil"
 	"net/http"
+	"net/url"
+
+	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
-func DoRequest(Input string, Language string, sentenceSplit string, Generalize string, GeneralizationSize string, GeneralizationID string) (data **SpamPredictionAPIResponse, err error) {
-	if len(Input) == 0 {
+func DoRequest(inp, lang, sen, gen, genSize, genId string) (data *SpamPredictionAPIResponse, err error) {
+	if len(inp) == 0 {
 		err = errors.New("[NLP][POSTagging] input not provided")
-		return nil, err
+		return
 	}
-	if len(Language) == 0 {
-		Language = "en"
+
+	if len(lang) == 0 {
+		lang = cf.DefaultLang
 	}
-	if len(sentenceSplit) == 0 {
-		sentenceSplit = "0"
+	if len(sen) == 0 {
+		sen = cf.DefaultIndex
 	}
-	if len(GeneralizationSize) == 0 {
-		GeneralizationSize = " "
+	if len(genSize) == 0 {
+		genSize = cf.DefaultIndex
 	}
-	if len(GeneralizationID) == 0 {
-		GeneralizationID = " "
+	if len(genId) == 0 {
+		genId = cf.DefaultIndex
 	}
-	if len(Generalize) == 0 {
-		Generalize = "0"
+	if len(gen) == 0 {
+		gen = cf.DefaultIndex
 	}
-	url := fmt.Sprintf(endpointurl, coffeehouse.CofeeHouseAPIKey, Input, Language, sentenceSplit, Generalize, GeneralizationID, GeneralizationSize)
-	res, err := http.Post(url, "text/plain", nil)
+
+	key := url.QueryEscape(cf.GetKey())
+	inp = url.QueryEscape(inp)
+	lang = url.QueryEscape(lang)
+	sen = url.QueryEscape(sen)
+	gen = url.QueryEscape(gen)
+	genSize = url.QueryEscape(genSize)
+	genId = url.QueryEscape(genId)
+
+	url := fmt.Sprintf(endpointurl, key, inp, lang, sen, gen, genSize, genId)
+
+	res, err := http.Post(url, cf.ContentType, nil)
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	defer res.Body.Close()
 
 	b, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, err
+		return
 	}
-	var Response *SpamPredictionAPIResponse
 
-	err = json.Unmarshal(b, &Response)
+	data = new(SpamPredictionAPIResponse)
+
+	err = json.Unmarshal(b, data)
 	if err != nil {
 		return nil, err
 	}
-	return &Response, nil
+
+	return
 }
