@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,51 +21,45 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
+	"net/url"
+
+	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
-func DoRequest(Sentence string) (result *SentenceSplitResponse, err error){
-	if len(Sentence) == 0 {
-		err = errors.New("[NLP][SentenceSplit] input not provided")
-		return nil, err
+func DoRequest(inp string) (result *SentenceSplitResponse, err error) {
+	if len(inp) == 0 {
+		err = errors.New("[NLP][POSTagging] input not provided")
+		return
 	}
-	requestBody := strings.NewReader(fmt.Sprintf(`
-		{
-			"input": %s,
-		}
-	`, Sentence))
 
-	// post some data
-	req, err := http.NewRequest("POST", endpointurl,
-		requestBody,
-	)
-	// check for response error
+	key := url.QueryEscape(cf.GetKey())
+	inp = url.QueryEscape(inp)
+
+	url := fmt.Sprintf(endpointurl, key, inp)
+
+	resp, err := http.Post(url, cf.ContentType, nil)
 	if err != nil {
-		log.Fatal( err )
+		return
 	}
-	req.Header.Set("access_key", coffeehouse.CofeeHouseAPIKey)
 
-	res, err := http.DefaultClient.Do(req)
-	if err != nil{
-		log.Println(err.Error())
-	}
-	defer res.Body.Close()
+	defer resp.Body.Close()
 
-	b, err := ioutil.ReadAll(res.Body)
+	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return
 	}
 
-	var response SentenceSplitResponse
+	log.Println(string(b))
 
-	err = json.Unmarshal(b, &response)
+	result = new(SentenceSplitResponse)
+
+	err = json.Unmarshal(b, result)
 	if err != nil {
 		return nil, err
 	}
 
-	return &response, nil
+	return
 }

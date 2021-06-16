@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,19 @@
 
 package sentenceSplit
 
-const (
-	endpointurl = "https://api.intellivoid.net/coffeehouse/v1/nlp/sentence_split"
-)
+type SentenceSplitResponse struct {
+	Success      bool     `json:"success"`
+	ResponseCode int      `json:"response_code"`
+	Results      *Results `json:"results"`
+}
+
+type Sentences struct {
+	Text        string `json:"text"`
+	OffsetBegin int    `json:"offset_begin"`
+	OffsetEnd   int    `json:"offset_end"`
+}
+
+type Results struct {
+	Text      string      `json:"text"`
+	Sentences []Sentences `json:"sentences"`
+}

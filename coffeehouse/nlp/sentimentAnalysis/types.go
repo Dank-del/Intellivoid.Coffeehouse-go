@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,30 +17,32 @@
 
 package sentimentAnalysis
 
+import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+
 type SentimentAnalysisResponse struct {
-	Success      bool `json:"success"`
-	ResponseCode int  `json:"response_code"`
-	Results  *Results `json:"results"`
+	Success      bool     `json:"success"`
+	ResponseCode int      `json:"response_code"`
+	Results      *Results `json:"results"`
 }
 
 type Results struct {
-	Text           string `json:"text"`
-	SourceLanguage string `json:"source_language"`
-	Sentiment *Sentiment`json:"sentiment"`
-	Sentences *Sentences `json:"sentences"`
-	Generalization interface{} `json:"generalization"`
+	Text           string             `json:"text"`
+	SourceLanguage string             `json:"source_language"`
+	Sentiment      *Sentiment         `json:"sentiment"`
+	Sentences      *Sentences         `json:"sentences"`
+	Generalization *cf.Generalization `json:"generalization"`
 }
 
 type Sentences struct {
-	Text        string `json:"text"`
-	OffsetBegin int    `json:"offset_begin"`
-	OffsetEnd   int    `json:"offset_end"`
-	Sentiment *Sentiment`json:"sentiment"`
+	Text        string     `json:"text"`
+	OffsetBegin int        `json:"offset_begin"`
+	OffsetEnd   int        `json:"offset_end"`
+	Sentiment   *Sentiment `json:"sentiment"`
 }
 
 type Sentiment struct {
-	Sentiment   string  `json:"sentiment"`
-	Prediction  float64 `json:"prediction"`
+	Sentiment   string       `json:"sentiment"`
+	Prediction  float64      `json:"prediction"`
 	Predictions *Predictions `json:"predictions"`
 }
 

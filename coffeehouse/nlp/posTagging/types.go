@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,31 +17,13 @@
 
 package posTagging
 
+import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+
 type POSApiResponse struct {
-	Success      bool `json:"success"`
-	ResponseCode int  `json:"response_code"`
-	Results *Results  `json:"results"`
-	Error *Error `json:"error"`
-}
-
-type Error struct {
-    ErrorCode int    `json:"error_code"`
-    Type      string `json:"type"`
-    Message   string `json:"message"`
-}
-
-type Results struct {
-	Text           string `json:"text"`
-	SourceLanguage string `json:"source_language"`
-	Tags           *Tags `json:"tags"`
-    Sentences      *Sentences `json:"sentences"`
-}
-
-type Sentences struct {
-	Text        string `json:"text"`
-	OffsetBegin int    `json:"offset_begin"`
-	OffsetEnd   int    `json:"offset_end"`
-	Tags        *Tags  `json:"tags"`
+	Success      bool      `json:"success"`
+	ResponseCode int       `json:"response_code"`
+	Results      *Results  `json:"results"`
+	Error        *cf.Error `json:"error"`
 }
 
 type Tags struct {
@@ -51,4 +33,8 @@ type Tags struct {
 	TagValue    string `json:"tag_value"`
 }
 
-
+type Results struct {
+	Text           string `json:"text"`
+	SourceLanguage string `json:"source_language"`
+	Tags           []Tags `json:"tags"`
+}

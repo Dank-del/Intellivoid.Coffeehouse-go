@@ -1,6 +1,6 @@
 /*
  * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
- * Copyright (c) 2021 Sayan Biswas.
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,5 +18,28 @@
 package emotionAnalysis
 
 const (
-	endpointurl = "https://api.intellivoid.net/coffeehouse/v1/nlp/emotion_analysis"
+	endpointurl = "https://api.intellivoid.net/" +
+		"coffeehouse/" +
+		"v1/nlp/" +
+		"emotion_analysis?" +
+		accessKeyKey + sAnd +
+		inputKey + sAnd +
+		languageKey + sAnd +
+		sentenceSplitKey + sAnd +
+		generalizationKey + sAnd +
+		generalizationSizeKey + sAnd +
+		generalizationIdKey + sFormat
+)
+
+// keys used in endpoint
+const (
+	accessKeyKey          = "access_key"
+	inputKey              = "input"
+	languageKey           = "language"
+	sentenceSplitKey      = "sentence_split"
+	generalizationKey     = "generalize"
+	generalizationSizeKey = "generalization_size"
+	generalizationIdKey   = "generalization_id"
+	sFormat               = "=%s"
+	sAnd                  = sFormat + "&"
 )
