@@ -17,24 +17,6 @@
 
 package classificationNSFW
 
-import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-
-type NSFWClassificationResponse struct {
-	Success      bool               `json:"success"`
-	ResponseCode int                `json:"response_code"`
-	Results      *Results           `json:"results"`
-	Error        *coffeehouse.Error `json:"error"`
-}
-
-type Results struct {
-	NsfwClassification *NsfwClassification         `json:"nsfw_classification"`
-	Generalization     *coffeehouse.Generalization `json:"generalization"`
-}
-
-type NsfwClassification struct {
-	ContentHash      string  `json:"content_hash"`
-	ContentType      string  `json:"content_type"`
-	SafePrediction   float64 `json:"safe_prediction"`
-	UnsafePrediction float64 `json:"unsafe_prediction"`
-	IsNsfw           bool    `json:"is_nsfw"`
-}
+const (
+	endpointUrl = "https://api.intellivoid.net/coffeehouse/v1/image/nsfw_classification"
+)
