@@ -18,19 +18,14 @@ package posTagging
 
 import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 
+// endpoint url used for sending HTTP request for this
+// API.
 const (
-	//endpointurl = "https://api.intellivoid.net/coffeehouse/" +
-	//	"v1/nlp/pos_tagging?" +
-	//	accessKeyKey + sAnd +
-	//	inputKey + sAnd +
-	//	languageKey + sAnd +
-	//	sentenceSplitKey + sFormat
-
 	endpointurl = coffeehouse.CoffeeEndpoint +
 		"v1/nlp/pos_tagging"
 )
 
-// keys used in endpoint
+// keys used in endpoint key-value map
 const (
 	accessKeyKey     = "access_key"
 	inputKey         = "input"

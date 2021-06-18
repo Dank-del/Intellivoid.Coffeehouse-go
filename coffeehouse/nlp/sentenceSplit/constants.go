@@ -19,12 +19,14 @@ package sentenceSplit
 
 import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 
+// endpoint url used for sending HTTP request for this
+// API.
 const (
 	endpointurl = coffeehouse.CoffeeEndpoint +
 		"v1/nlp/sentence_split"
 )
 
-// keys used in endpoint
+// keys used in endpoint key-value map
 const (
 	accessKeyKey = "access_key"
 	inputKey     = "input"

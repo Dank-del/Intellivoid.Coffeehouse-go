@@ -20,7 +20,6 @@ package sentenceSplit
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -30,17 +29,20 @@ import (
 )
 
 func DoRequest(inp string) (result *SentenceSplitResponse, err error) {
+	if !cf.IsSet() {
+		return nil, errors.New("[NLP][SendtenceSplit] access key is not set")
+	}
+
 	if len(inp) == 0 {
-		err = errors.New("[NLP][POSTagging] input not provided")
+		err = errors.New("[NLP][SendtenceSplit] input not provided")
 		return
 	}
 
-	key := url.QueryEscape(cf.GetKey())
-	inp = url.QueryEscape(inp)
+	v := url.Values{}
+	v.Set(accessKeyKey, cf.GetKey())
+	v.Set(inputKey, inp)
 
-	url := fmt.Sprintf(endpointurl, key, inp)
-
-	resp, err := http.Post(url, cf.ContentType, nil)
+	resp, err := http.PostForm(endpointurl, v)
 	if err != nil {
 		return
 	}

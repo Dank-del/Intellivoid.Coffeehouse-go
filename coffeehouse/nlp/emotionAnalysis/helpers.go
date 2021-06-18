@@ -40,11 +40,11 @@ func AnalysisText(text string) (data *Emotionysis, err error) {
 //
 func AnalysisFull(inp, lang, sen, gen, genSize, genId string) (emo *Emotionysis, err error) {
 	if !cf.IsSet() {
-		return nil, errors.New("[NLP][POSTagging] access key is not set")
+		return nil, errors.New("[NLP][EmotionAnalysis] access key is not set")
 	}
 
 	if len(inp) == 0 {
-		err = errors.New("[NLP][POSTagging] input not provided")
+		err = errors.New("[NLP][EmotionAnalysis] input not provided")
 		return nil, err
 	}
 

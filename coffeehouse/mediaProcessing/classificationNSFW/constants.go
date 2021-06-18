@@ -17,18 +17,17 @@
 
 package classificationNSFW
 
+// endpoint url used for sending HTTP request for this
+// API.
 const (
 	endpointurl = "https://api.intellivoid.net/" +
 		"coffeehouse/" +
 		"v1/image/" +
 		"nsfw_classification?"
-	//imageKey + sFormat
 )
 
-// keys used in endpoint
+// keys used in endpoint key-value map
 const (
 	accessKeyKey = "access_key"
 	imageKey     = "image"
-	sFormat      = "=%s"
-	sAnd         = sFormat + "&"
 )
