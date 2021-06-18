@@ -17,17 +17,15 @@
 
 package sentenceSplit
 
+import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+
 const (
-	endpointurl = "https://api.intellivoid.net/coffeehouse/" +
-		"v1/nlp/sentence_split?" +
-		accessKeyKey + sAnd +
-		inputKey + sFormat
+	endpointurl = coffeehouse.CoffeeEndpoint +
+		"v1/nlp/sentence_split"
 )
 
 // keys used in endpoint
 const (
 	accessKeyKey = "access_key"
 	inputKey     = "input"
-	sFormat      = "=%s"
-	sAnd         = sFormat + "&"
 )

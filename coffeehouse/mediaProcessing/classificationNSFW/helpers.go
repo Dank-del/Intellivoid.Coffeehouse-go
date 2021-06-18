@@ -20,12 +20,13 @@ package classificationNSFW
 import (
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 	"io/ioutil"
 	"log"
 	"net/http"
 	url2 "net/url"
+	"strings"
+
+	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
 func toBase64(b []byte) string {
@@ -36,26 +37,40 @@ func DoRequest(filename string) (res *NSFWClassificationResponse, err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var base64Encoding string
-	mimeType := http.DetectContentType(bytes)
 
-	switch mimeType {
-	case "image/jpeg":
-		base64Encoding += "data:image/jpeg;base64,"
-	case "image/png":
-		base64Encoding += "data:image/png;base64,"
+	imgBase64 := toBase64(bytes)
 
+	dt := url2.Values{}
+	dt.Set("image", imgBase64)
+	dt.Set(accessKeyKey, coffeehouse.GetKey())
+	resp, err := http.PostForm(endpointurl, dt)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//req.Header.Set("image", image)
+	//req.PostForm = url2.Values{}
+	//req.PostForm.Set("image", image)
+	//req.Header.Set("Content-Type", "multipart/form-data")
+	//resp, err := http.Post(url, coffeehouse.ContentType, nil)
+	//resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		str := err.Error()
+		str = strings.ReplaceAll(str, imgBase64, "{<base64> value of image}")
+		log.Fatal(str)
 	}
-	base64Encoding += toBase64(bytes)
-	key := url2.QueryEscape(coffeehouse.GetKey())
-	image := url2.QueryEscape(base64Encoding)
-	url := fmt.Sprintf("%s?=accesskey=%s&image=%s", endpointUrl, key, image)
-	resp, err := http.Post(url, coffeehouse.ContentType, nil)
+
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-	d := json.NewDecoder(resp.Body)
+
+	log.Println(string(b))
+
 	var n NSFWClassificationResponse
-	err = d.Decode(&n)
+
+	err = json.Unmarshal(b, &n)
+
 	return &n, err
 }

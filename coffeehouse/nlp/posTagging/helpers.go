@@ -3,7 +3,6 @@ package posTagging
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,7 +11,7 @@ import (
 	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
-func TagPOSFull(inp, lang, sen string) (data *POSApiResponse, err error) {
+func TagPOSFull(inp, lang, sen string) (pos *POSApiResponse, err error) {
 	if len(inp) == 0 {
 		err = errors.New("[NLP][POSTagging] input not provided")
 		return nil, err
@@ -25,16 +24,14 @@ func TagPOSFull(inp, lang, sen string) (data *POSApiResponse, err error) {
 		sen = cf.DefaultIndex
 	}
 
-	key := url.QueryEscape(cf.GetKey())
-	inp = url.QueryEscape(inp)
-	lang = url.QueryEscape(lang)
-	sen = url.QueryEscape(sen)
-
-	url := fmt.Sprintf(endpointurl, key, inp, lang, sen)
-
-	resp, err := http.Post(url, cf.ContentType, nil)
+	dt := url.Values{}
+	dt.Set(accessKeyKey, cf.GetKey())
+	dt.Set(inputKey, inp)
+	dt.Set(languageKey, lang)
+	dt.Set(sentenceSplitKey, sen)
+	resp, err := http.PostForm(endpointurl, dt)
 	if err != nil {
-		return
+		log.Fatal(err)
 	}
 
 	defer resp.Body.Close()
@@ -46,9 +43,9 @@ func TagPOSFull(inp, lang, sen string) (data *POSApiResponse, err error) {
 
 	log.Println(string(b))
 
-	data = new(POSApiResponse)
+	pos = new(POSApiResponse)
 
-	err = json.Unmarshal(b, data)
+	err = json.Unmarshal(b, pos)
 	if err != nil {
 		return nil, err
 	}

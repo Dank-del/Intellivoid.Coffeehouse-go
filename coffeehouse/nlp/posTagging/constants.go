@@ -16,13 +16,18 @@
  */
 package posTagging
 
+import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+
 const (
-	endpointurl = "https://api.intellivoid.net/coffeehouse/" +
-		"v1/nlp/pos_tagging?" +
-		accessKeyKey + sAnd +
-		inputKey + sAnd +
-		languageKey + sAnd +
-		sentenceSplitKey + sFormat
+	//endpointurl = "https://api.intellivoid.net/coffeehouse/" +
+	//	"v1/nlp/pos_tagging?" +
+	//	accessKeyKey + sAnd +
+	//	inputKey + sAnd +
+	//	languageKey + sAnd +
+	//	sentenceSplitKey + sFormat
+
+	endpointurl = coffeehouse.CoffeeEndpoint +
+		"v1/nlp/pos_tagging"
 )
 
 // keys used in endpoint
@@ -31,6 +36,4 @@ const (
 	inputKey         = "input"
 	languageKey      = "language"
 	sentenceSplitKey = "sentence_split"
-	sFormat          = "=%s"
-	sAnd             = sFormat + "&"
 )

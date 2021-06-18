@@ -21,11 +21,15 @@ var coffeeHouseAPIKey string
 
 func SetKey(apiKey string) {
 	// check if we have already set the key or not
-	if len(coffeeHouseAPIKey) != 0 {
+	if IsSet() {
 		return
 	}
 
 	coffeeHouseAPIKey = apiKey
+}
+
+func IsSet() bool {
+	return len(coffeeHouseAPIKey) != 0
 }
 
 func GetKey() string {

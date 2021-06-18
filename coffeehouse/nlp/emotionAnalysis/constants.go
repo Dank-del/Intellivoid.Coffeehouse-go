@@ -17,18 +17,12 @@
 
 package emotionAnalysis
 
+import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+
 const (
-	endpointurl = "https://api.intellivoid.net/" +
-		"coffeehouse/" +
+	endpointurl = coffeehouse.CoffeeEndpoint +
 		"v1/nlp/" +
-		"emotion_analysis?" +
-		accessKeyKey + sAnd +
-		inputKey + sAnd +
-		languageKey + sAnd +
-		sentenceSplitKey + sAnd +
-		generalizationKey + sAnd +
-		generalizationSizeKey + sAnd +
-		generalizationIdKey + sFormat
+		"emotion_analysis"
 )
 
 // keys used in endpoint
@@ -40,6 +34,4 @@ const (
 	generalizationKey     = "generalize"
 	generalizationSizeKey = "generalization_size"
 	generalizationIdKey   = "generalization_id"
-	sFormat               = "=%s"
-	sAnd                  = sFormat + "&"
 )

@@ -18,14 +18,15 @@
 package tests
 
 import (
+	"testing"
+
 	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/mediaProcessing/classificationNSFW"
-	"testing"
 )
 
 func TestNSFWClassification(t *testing.T) {
-	coffeehouse.SetKey("api key")
-	res, err := classificationNSFW.DoRequest("owo.jpg")
+	coffeehouse.SetKey("9af1dc94e606dc199e4d38ad2f80193742aee3fabc4c714b4bacf9ccc690ebfde6af8def68427540dbc4f0e3e57cc90ba21b4f27e81d367b551ae8acbaf99471")
+	res, err := classificationNSFW.DoRequest("nsfw/owo.jpg")
 	if err != nil {
 		t.Errorf(err.Error())
 	}

@@ -31,6 +31,7 @@ func TestSpamPrediction(t *testing.T) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
 	if (*res).Success != true {
 		t.Errorf("[Intellivoid.Coffeehouse-go (spamPrediction)] Failed request, response code: %d", (*res).ResponseCode)
 
