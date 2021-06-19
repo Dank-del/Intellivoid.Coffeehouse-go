@@ -1,38 +1,57 @@
+/*
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * Copyright (c) 2021 Sayan Biswas, ALiwoto.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package posTagging
 
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 
 	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
-func TagPOSFull(inp, lang, sen string) (data *POSApiResponse, err error) {
+func TagPOSFull(inp, lang, sen string) (pos *POSApiResponse, err error) {
+	if !cf.IsSet() {
+		return nil, errors.New("[NLP][POSTagging] access key is not set")
+	}
+
 	if len(inp) == 0 {
 		err = errors.New("[NLP][POSTagging] input not provided")
-		return nil, err
+		return
 	}
 
 	if len(lang) == 0 {
 		lang = cf.DefaultLang
 	}
+
 	if len(sen) == 0 {
 		sen = cf.DefaultIndex
 	}
 
-	key := url.QueryEscape(cf.GetKey())
-	inp = url.QueryEscape(inp)
-	lang = url.QueryEscape(lang)
-	sen = url.QueryEscape(sen)
+	v := url.Values{}
+	v.Set(accessKeyKey, cf.GetKey())
+	v.Set(inputKey, inp)
+	v.Set(languageKey, lang)
+	v.Set(sentenceSplitKey, sen)
 
-	url := fmt.Sprintf(endpointurl, key, inp, lang, sen)
-
-	resp, err := http.Post(url, cf.ContentType, nil)
+	resp, err := http.PostForm(endpointurl, v)
 	if err != nil {
 		return
 	}
@@ -44,11 +63,9 @@ func TagPOSFull(inp, lang, sen string) (data *POSApiResponse, err error) {
 		return
 	}
 
-	log.Println(string(b))
+	pos = new(POSApiResponse)
 
-	data = new(POSApiResponse)
-
-	err = json.Unmarshal(b, data)
+	err = json.Unmarshal(b, pos)
 	if err != nil {
 		return nil, err
 	}

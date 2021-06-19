@@ -26,11 +26,12 @@ import (
 )
 
 func TestSpamPrediction(t *testing.T) {
-	coffeehouse.SetKey("3056b00704d72611e19e5c6df580798864155d9818175ffa1a4ae4a1c1496eeca48ad7aa9a625918431edbc1fa3ea712b2d591dd842e0bdb237c14a545cdd068")
+	coffeehouse.SetKey("<access_key>")
 	res, err := spamPrediction.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
 	if (*res).Success != true {
 		t.Errorf("[Intellivoid.Coffeehouse-go (spamPrediction)] Failed request, response code: %d", (*res).ResponseCode)
 

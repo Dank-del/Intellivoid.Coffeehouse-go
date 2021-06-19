@@ -20,7 +20,6 @@ package sentimentAnalysis
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -28,53 +27,60 @@ import (
 	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
-func DoRequest(inp, lang, sen, gen, genSize, genId string) (data *SentimentAnalysisResponse, err error) {
+func DoRequest(inp, lang, sen, gen, genSize, genId string) (sentsys *SentimentAnalysisResponse, err error) {
+	if !cf.IsSet() {
+		return nil, errors.New("[NLP][SentimentAnalysis] access key is not set")
+	}
+
 	if len(inp) == 0 {
-		err = errors.New("[NLP][POSTagging] input not provided")
+		err = errors.New("[NLP][SentimentAnalysis] input not provided")
 		return
 	}
 
 	if len(lang) == 0 {
 		lang = cf.DefaultLang
 	}
+
 	if len(sen) == 0 {
 		sen = cf.DefaultIndex
 	}
+
 	if len(genSize) == 0 {
 		genSize = cf.DefaultIndex
 	}
+
 	if len(genId) == 0 {
 		genId = cf.DefaultIndex
 	}
+
 	if len(gen) == 0 {
 		gen = cf.DefaultIndex
 	}
 
-	key := url.QueryEscape(cf.GetKey())
-	inp = url.QueryEscape(inp)
-	lang = url.QueryEscape(lang)
-	sen = url.QueryEscape(sen)
-	gen = url.QueryEscape(gen)
-	genSize = url.QueryEscape(genSize)
-	genId = url.QueryEscape(genId)
+	v := url.Values{}
+	v.Set(accessKeyKey, cf.GetKey())
+	v.Set(inputKey, inp)
+	v.Set(languageKey, lang)
+	v.Set(sentenceSplitKey, sen)
+	v.Set(generalizationKey, gen)
+	v.Set(generalizationIdKey, genId)
+	v.Set(generalizationSizeKey, genSize)
 
-	url := fmt.Sprintf(endpointurl, key, inp, lang, sen, gen, genSize, genId)
-
-	res, err := http.Post(url, cf.ContentType, nil)
+	resp, err := http.PostForm(endpointurl, v)
 	if err != nil {
 		return
 	}
 
-	defer res.Body.Close()
+	defer resp.Body.Close()
 
-	b, err := ioutil.ReadAll(res.Body)
+	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return
 	}
 
-	data = new(SentimentAnalysisResponse)
+	sentsys = new(SentimentAnalysisResponse)
 
-	err = json.Unmarshal(b, data)
+	err = json.Unmarshal(b, sentsys)
 	if err != nil {
 		return nil, err
 	}
