@@ -26,7 +26,7 @@ import (
 )
 
 func TestSentenceSplit(t *testing.T) {
-	coffeehouse.SetKey("<access_key>")
+	coffeehouse.SetKey(returnKey())
 	res, err := sentenceSplit.DoRequest("Hey there, I'm Sayan. How are you doing?")
 	if err != nil {
 		log.Fatal(err.Error())

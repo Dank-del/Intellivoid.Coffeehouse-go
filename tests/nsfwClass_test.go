@@ -25,8 +25,8 @@ import (
 )
 
 func TestNSFWClassification(t *testing.T) {
-	coffeehouse.SetKey("<access_key>")
-	res, err := classificationNSFW.DoRequest("nsfw/owo.jpg")
+	coffeehouse.SetKey(returnKey())
+	res, err := classificationNSFW.DoRequest("owo.jpg")
 	if err != nil {
 		t.Errorf(err.Error())
 	}

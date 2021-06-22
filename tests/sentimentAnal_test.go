@@ -26,7 +26,7 @@ import (
 )
 
 func TestSentimentAnal(t *testing.T) {
-	coffeehouse.SetKey("<access_key>")
+	coffeehouse.SetKey(returnKey())
 	// res, err := sentimentAnalysis.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
 	// res, err := sentimentAnalysis.DoRequest("After I've been accepted, I wanted to cry out from happiness", "en", "", "", "", "")
 	res, err := sentimentAnalysis.DoRequest("I'm very happy", "en", "", "", "", "")

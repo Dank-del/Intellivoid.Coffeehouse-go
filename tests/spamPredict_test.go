@@ -26,7 +26,7 @@ import (
 )
 
 func TestSpamPrediction(t *testing.T) {
-	coffeehouse.SetKey("<access_key>")
+	coffeehouse.SetKey(returnKey())
 	res, err := spamPrediction.DoRequest("Hey there, I'm Sayan. How are you doing?", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err.Error())
