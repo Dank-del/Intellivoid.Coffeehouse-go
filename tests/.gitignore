@@ -29,3 +29,6 @@
 
 # ignore all of files in nsfw directory since we don't want to get banned in github
 nsfw/
+
+# ignore key
+key.txt
