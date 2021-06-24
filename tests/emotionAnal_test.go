@@ -26,7 +26,9 @@ import (
 )
 
 func TestEmotionAnal(t *testing.T) {
-	coffeehouse.SetKey("<access_key>")
+	key := returnKey()
+	//log.Println(key)
+	coffeehouse.SetKey(key)
 	res, err := emotionAnalysis.AnalysisFull("After I've been accepted, I wanted to cry from happiness", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err)
