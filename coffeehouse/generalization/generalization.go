@@ -15,4 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// generalization package provides helpful helpers, methods
+// and interfaces to use generalization feature in
+// Coffeehouse APIs.
 package generalization
