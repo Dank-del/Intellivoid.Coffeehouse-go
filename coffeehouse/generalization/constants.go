@@ -19,7 +19,7 @@ package generalization
 
 // public constants values used in generalization packages.
 const (
-	// MaxSize is the maximum possible size of a generalization table
+	// MinSize is the minimum possible size of a generalization table
 	// that can be passed to the generalization info.
 	MinSize = 1
 
