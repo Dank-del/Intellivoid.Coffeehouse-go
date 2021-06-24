@@ -15,24 +15,4 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package sentenceSplit
-
-import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-
-type SentenceSplited struct {
-	Success      bool      `json:"success"`
-	ResponseCode int       `json:"response_code"`
-	Results      *Results  `json:"results"`
-	Error        *cf.Error `json:"error"`
-}
-
-type Sentences struct {
-	Text        string `json:"text"`
-	OffsetBegin int    `json:"offset_begin"`
-	OffsetEnd   int    `json:"offset_end"`
-}
-
-type Results struct {
-	Text      string      `json:"text"`
-	Sentences []Sentences `json:"sentences"`
-}
+package generalization

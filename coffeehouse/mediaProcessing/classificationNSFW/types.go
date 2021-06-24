@@ -17,21 +17,21 @@
 
 package classificationNSFW
 
-import "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 
-type NSFWClassificationResponse struct {
-	Success      bool               `json:"success"`
-	ResponseCode int                `json:"response_code"`
-	Results      *Results           `json:"results"`
-	Error        *coffeehouse.Error `json:"error"`
+type NSFWClassified struct {
+	Success      bool      `json:"success"`
+	ResponseCode int       `json:"response_code"`
+	Results      *Results  `json:"results"`
+	Error        *cf.Error `json:"error"`
 }
 
 type Results struct {
-	NsfwClassification *NsfwClassification         `json:"nsfw_classification"`
-	Generalization     *coffeehouse.Generalization `json:"generalization"`
+	NsfwClassification *Classification    `json:"nsfw_classification"`
+	Generalization     *cf.Generalization `json:"generalization"`
 }
 
-type NsfwClassification struct {
+type Classification struct {
 	ContentHash      string  `json:"content_hash"`
 	ContentType      string  `json:"content_type"`
 	SafePrediction   float64 `json:"safe_prediction"`

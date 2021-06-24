@@ -26,7 +26,7 @@ import (
 )
 
 func TestPOSTagging(t *testing.T) {
-	coffeehouse.SetKey("access_key")
+	coffeehouse.SetKey("<access_key>")
 	res, err := posTagging.TagPOSFull("hello, how are you?", "en", "0")
 	if err != nil {
 		log.Fatal(err.Error())
