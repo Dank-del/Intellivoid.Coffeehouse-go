@@ -18,11 +18,11 @@
 package coffeehouse
 
 type Generalization struct {
-	ID             string         `json:"id"`
-	Size           int            `json:"size"`
-	TopLabel       string         `json:"top_label"`
-	TopProbability float64        `json:"top_probability"`
-	Probabilities  *Probabilities `json:"probabilities"`
+	ID             string          `json:"id"`
+	Size           int             `json:"size"`
+	TopLabel       string          `json:"top_label"`
+	TopProbability float64         `json:"top_probability"`
+	Probabilities  []Probabilities `json:"probabilities"`
 }
 
 type Probabilities struct {

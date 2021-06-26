@@ -38,6 +38,7 @@ func CreateNew(size uint8) (info GenInfo, err error) {
 	info = &genInfo{
 		NewGen: true,
 		Size:   size,
+		GenId:  "",
 	}
 
 	return

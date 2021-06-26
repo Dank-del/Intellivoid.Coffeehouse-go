@@ -20,13 +20,16 @@ package classificationNSFW
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
 	url2 "net/url"
+	"strconv"
 	"strings"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	gen "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
 )
 
 func toBase64(b []byte) string {
@@ -43,9 +46,10 @@ func classify(filename, gen, genSize, genId string) (classified *NSFWClassified,
 
 	v := url2.Values{}
 	v.Set(imageKey, imgBase64)
-	v.Set(accessKeyKey, coffeehouse.GetKey())
+	v.Set(accessKeyKey, cf.GetKey())
 	v.Set(generalizationKey, gen)
 	v.Set(generalizationSizeKey, genSize)
+
 	v.Set(generalizationIdKey, genId)
 
 	resp, err := http.PostForm(endpointurl, v)
@@ -73,10 +77,29 @@ func classify(filename, gen, genSize, genId string) (classified *NSFWClassified,
 }
 
 func ClassifyFile(filename string) (*NSFWClassified, error) {
-	return classify(filename, coffeehouse.DefaultIndex,
-		coffeehouse.DefaultIndex, coffeehouse.DefaultIndex)
+	return classify(filename, cf.DefaultIndex,
+		cf.DefaultIndex, cf.DefaultIndex)
 }
 
-func ClassifyWithGeneralize() {
+func ClassifyWithGeneralize(filename string,
+	gInfo gen.GenInfo) (classified *NSFWClassified, err error) {
+	if gInfo == nil {
+		return nil, errors.New("generalization info cannot be nil")
+	}
 
+	size := strconv.Itoa(int(gInfo.GetSize()))
+
+	classified, err = classify(filename, cf.TrueIndex,
+		size, cf.DefaultIndex)
+
+	if classified.Results != nil {
+		if classified.Results.Generalization != nil {
+			id := classified.Results.Generalization.ID
+			// set the generalization id, so it will set
+			// isnew to `false`.
+			gInfo.SetID(id)
+		}
+	}
+
+	return
 }

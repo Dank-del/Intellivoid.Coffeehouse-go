@@ -22,4 +22,5 @@ const (
 	CoffeeEndpoint = "https://api.intellivoid.net/coffeehouse/"
 	DefaultLang    = "en"
 	DefaultIndex   = "0"
+	TrueIndex      = "1"
 )
