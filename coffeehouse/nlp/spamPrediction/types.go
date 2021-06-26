@@ -20,9 +20,10 @@ package spamPrediction
 import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
 
 type SpamPredictionAPIResponse struct {
-	Success      bool     `json:"success"`
-	ResponseCode int      `json:"response_code"`
-	Results      *Results `json:"results"`
+	Success      bool      `json:"success"`
+	ResponseCode int       `json:"response_code"`
+	Results      *Results  `json:"results"`
+	Error        *cf.Error `json:"error"`
 }
 
 type Results struct {

@@ -21,12 +21,30 @@ import (
 	"testing"
 
 	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
 	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/mediaProcessing/classificationNSFW"
 )
 
 func TestNSFWClassification(t *testing.T) {
 	coffeehouse.SetKey(returnKey())
-	res, err := classificationNSFW.DoRequest("owo.jpg")
+
+	res, err := classificationNSFW.ClassifyFile("nsfw/owo.jpg")
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if res.Success != true {
+		t.Errorf("[Intellivoid.Coffeehouse-go (classificationNSFW)] Failed request, response code: %d", res.ResponseCode)
+	}
+}
+func TestNSFWClassificationWithGen(t *testing.T) {
+	coffeehouse.SetKey(returnKey())
+	g, err := generalization.CreateNew(5)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	res, err :=
+		classificationNSFW.ClassifyWithGeneralize("nsfw/owo.jpg", g)
 	if err != nil {
 		t.Errorf(err.Error())
 	}

@@ -28,6 +28,9 @@ const (
 
 // keys used in endpoint key-value map
 const (
-	accessKeyKey = "access_key"
-	imageKey     = "image"
+	accessKeyKey          = "access_key"
+	imageKey              = "image"
+	generalizationKey     = "generalize"
+	generalizationSizeKey = "generalization_size"
+	generalizationIdKey   = "generalization_id"
 )

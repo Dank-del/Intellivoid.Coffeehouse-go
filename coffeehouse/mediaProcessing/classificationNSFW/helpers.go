@@ -20,19 +20,23 @@ package classificationNSFW
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
 	url2 "net/url"
+	"strconv"
 	"strings"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	gen "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
 )
 
 func toBase64(b []byte) string {
 	return base64.StdEncoding.EncodeToString(b)
 }
-func DoRequest(filename string) (res *NSFWClassificationResponse, err error) {
+
+func classify(filename, gen, genSize, genId string) (classified *NSFWClassified, err error) {
 	bytes, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -40,19 +44,16 @@ func DoRequest(filename string) (res *NSFWClassificationResponse, err error) {
 
 	imgBase64 := toBase64(bytes)
 
-	dt := url2.Values{}
-	dt.Set("image", imgBase64)
-	dt.Set(accessKeyKey, coffeehouse.GetKey())
-	resp, err := http.PostForm(endpointurl, dt)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//req.Header.Set("image", image)
-	//req.PostForm = url2.Values{}
-	//req.PostForm.Set("image", image)
-	//req.Header.Set("Content-Type", "multipart/form-data")
-	//resp, err := http.Post(url, coffeehouse.ContentType, nil)
-	//resp, err := http.DefaultClient.Do(req)
+	v := url2.Values{}
+	v.Set(imageKey, imgBase64)
+	v.Set(accessKeyKey, cf.GetKey())
+	v.Set(generalizationKey, gen)
+	v.Set(generalizationSizeKey, genSize)
+
+	v.Set(generalizationIdKey, genId)
+
+	resp, err := http.PostForm(endpointurl, v)
+
 	if err != nil {
 		str := err.Error()
 		str = strings.ReplaceAll(str, imgBase64, "{<base64> value of image}")
@@ -68,9 +69,37 @@ func DoRequest(filename string) (res *NSFWClassificationResponse, err error) {
 
 	log.Println(string(b))
 
-	var n NSFWClassificationResponse
+	classified = new(NSFWClassified)
 
-	err = json.Unmarshal(b, &n)
+	err = json.Unmarshal(b, classified)
 
-	return &n, err
+	return
+}
+
+func ClassifyFile(filename string) (*NSFWClassified, error) {
+	return classify(filename, cf.DefaultIndex,
+		cf.DefaultIndex, cf.DefaultIndex)
+}
+
+func ClassifyWithGeneralize(filename string,
+	gInfo gen.GenInfo) (classified *NSFWClassified, err error) {
+	if gInfo == nil {
+		return nil, errors.New("generalization info cannot be nil")
+	}
+
+	size := strconv.Itoa(int(gInfo.GetSize()))
+
+	classified, err = classify(filename, cf.TrueIndex,
+		size, cf.DefaultIndex)
+
+	if classified.Results != nil {
+		if classified.Results.Generalization != nil {
+			id := classified.Results.Generalization.ID
+			// set the generalization id, so it will set
+			// isnew to `false`.
+			gInfo.SetID(id)
+		}
+	}
+
+	return
 }
