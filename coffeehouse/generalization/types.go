@@ -20,7 +20,7 @@ package generalization
 // genInfo is a private struct which contains
 // some important informations about a generalization table in
 // Intellivoid's servers. It's used to manage, maintain, save,
-// load and list generaliazation table for users.
+// load and list generaliazation tables for users.
 // Users have to use interface `GenInfo` instead of this struct
 // to get, create or list their generalization tables.
 // It's supposed to be a cool feature in this library.
@@ -98,11 +98,22 @@ type genInfo struct {
 	// amount of time if you are working with that data,
 	// for instance chat rooms and whatnot.
 	// Or tweets.
+	// ...
+	// If you are interested in conversation, here is the link:
+	// https://t.me/IntellivoidDiscussions/35087
+	// https://t.me/IntellivoidDiscussions/35105
 	GenId string `json:"generalization_id"`
 
 	// Here is what docs says about it:
 	// The size of the generalization table, cannot be 0 or less
 	// or greater than what your subscription supports.
 	// The mininum for a subscription is 5 and the maximum is 20.
+	// I asked them about "Where can we find what does my plan support?"
+	// But they didn't answer anything.
+	// (using "they" is not correct here, I asked from owner.)
+	// God, that man is ignoring most of messages of me,
+	// but that's also cute ^^
+	// here is the link:
+	// https://t.me/IntellivoidDiscussions/35286
 	Size uint8 `json:"generalization_size"`
 }
