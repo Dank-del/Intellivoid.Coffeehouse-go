@@ -8,7 +8,7 @@ Editing this document:
 
 Code Samples:
 
-Use tab with size of 4 spaces to indent. Horizontal real estate is important 
+Use 2 spaces to indent. Horizontal real estate is important 
 in side-by-side
 samples.
 
