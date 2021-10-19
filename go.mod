@@ -1,5 +1,5 @@
 //
-// This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+// This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
 // Copyright (c) 2021 Sayan Biswas, ALiwoto.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -15,6 +15,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-module github.com/Dank-del/Intellivoid.Coffeehouse-go
+module github.com/intellivoid/Intellivoid.Coffeehouse-go
 
 go 1.16

@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/nlp/sentimentAnalysis"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/nlp/sentimentAnalysis"
 )
 
 func TestSentimentAnal(t *testing.T) {
@@ -32,7 +32,7 @@ func TestSentimentAnal(t *testing.T) {
 	res, err := sentimentAnalysis.DoRequest("I'm very happy", "en", "", "", "", "")
 	if err != nil {
 		log.Fatal(err.Error())
-		t.Log(err)
+		// t.Log(err)
 	}
 
 	log.Println(res)
