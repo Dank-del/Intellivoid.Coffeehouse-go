@@ -10,9 +10,12 @@ To organize the efforts made for this library, the Intellivoid Team has written 
 
 ## How To Contribute?
 
-Coffeehouse-go has a `master` branch for stable releases and a `develop` branch for daily development.  New features and fixes are always submitted to the `develop` branch.
+Coffeehouse-go has a `master` branch for stable releases and a `develop` branch for daily development. New features and
+fixes are always submitted to the `develop` branch.
 
-If you are looking for ways to help, you should start by looking at the [Help Wanted tasks](https://github.com/Dank-del/Intellivoid.Coffeehouse-go/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22).
+If you are looking for ways to help, you should start by looking at
+the [Help Wanted tasks](https://github.com/intellivoid/Intellivoid.Coffeehouse-go/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22)
+.
 
 > Please let us know if you plan to work on an issue so that others are not duplicating work.
 
@@ -77,7 +80,7 @@ We accept contributions in "good faith" that it isn't bound to a conflicting lic
 To this end, when submitting new files, include the following in the header if appropriate:
 ```go
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify

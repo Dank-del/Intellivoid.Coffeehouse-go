@@ -1,5 +1,5 @@
 <!--
-	This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+	This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
 	Copyright (c) 2021 Sayan Biswas, ALiwoto.
 
 	This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@
 
 # <h1 align="middle"> <img src="https://coffeehouse.intellivoid.net/assets/favicon/favicon-194x194.png" width="35px" align="left"></img> Coffeehouse-go <img src="https://intellivoid.net/assets/favicon/android-chrome-192x192.png" width="35px" align="right"></img> </h1>
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/Dank-del/Intellivoid.Coffeehouse-go.svg)](https://pkg.go.dev/github.com/Dank-del/Intellivoid.Coffeehouse-go)
+[![Go Reference](https://pkg.go.dev/badge/github.com/intellivoid/Intellivoid.Coffeehouse-go.svg)](https://pkg.go.dev/github.com/intellivoid/Intellivoid.Coffeehouse-go)
 
-
-Coffeehouse-go is a small, simple and official [golang](https://go.dev) library for using [Coffeehouse](coffeehouse.intellivoid.net) API services.
-You can find JavaScript version of this library [here](https://github.com/intellivoid/CoffeeHouse-JavaScript-API-Wrapper).
-It's designed to support all features of Coffeehouse in one piece, so by using this library, you don't have to install anything else.
-It has simple and special tools to work with complicated parts of the API, like Generalization.
+Coffeehouse-go is a small, simple and official [golang](https://go.dev) library for
+using [Coffeehouse](coffeehouse.intellivoid.net) API services. You can find JavaScript version of this
+library [here](https://github.com/intellivoid/CoffeeHouse-JavaScript-API-Wrapper). It's designed to support all features
+of Coffeehouse in one piece, so by using this library, you don't have to install anything else. It has simple and
+special tools to work with complicated parts of the API, like Generalization.
 
 <hr/>
 
@@ -89,14 +89,15 @@ Simply use only one command to download the library in less than ten seconds in 
 It's the standard `go get` command which is available in all platforms:
 
 ```bash
-go get github.com/Dank-del/Intellivoid.Coffeehouse-go
+go get github.com/intellivoid/Intellivoid.Coffeehouse-go
 ```
 or
 ```bash
-dep ensure -add github.com/Dank-del/Intellivoid.Coffeehouse-go
+dep ensure -add github.com/intellivoid/Intellivoid.Coffeehouse-go
 ```
 
-Also if you need full documentation of this library, you can find it [here](https://pkg.go.dev/github.com/Dank-del/Intellivoid.Coffeehouse-go).
+Also if you need full documentation of this library, you can find
+it [here](https://pkg.go.dev/github.com/intellivoid/Intellivoid.Coffeehouse-go).
 
 <hr/>
 
@@ -129,11 +130,17 @@ You can see a list of preview here:
     - [Sayan Biswas](https://t.me/dank_as_fuck)
     - [ALiwoto](https://t.me/Falling_inside_the_Black)
 
- * Still don't know what's going on? Not sure about how API works? Be sure to read [Introduction](https://docs.intellivoid.net/coffeehouse/v1/introduction).
+ * Still don't know what's going on? Not sure about how API works? Be sure to
+   read [Introduction](https://docs.intellivoid.net/coffeehouse/v1/introduction).
 
- * If you think you have found a bug or have a feature request, feel free to use our [issue tracker](https://github.com/Dank-del/Intellivoid.Coffeehouse-go/issues). Before opening a new issue, please search to see if your problem has already been reported or not.  Try to be as detailed as possible in your issue reports.
- 
- * If you need help using Intellivoid's APIs or have other questions we suggest you to join our [telegram community](https://t.me/IntellivoidCommunity).  Please do not use the GitHub issue tracker for personal support requests.
+ * If you think you have found a bug or have a feature request, feel free to use
+   our [issue tracker](https://github.com/intellivoid/Intellivoid.Coffeehouse-go/issues). Before opening a new issue,
+   please search to see if your problem has already been reported or not. Try to be as detailed as possible in your
+   issue reports.
+
+ * If you need help using Intellivoid's APIs or have other questions we suggest you to join
+   our [telegram community](https://t.me/IntellivoidCommunity). Please do not use the GitHub issue tracker for personal
+   support requests.
 
 <hr/>
 

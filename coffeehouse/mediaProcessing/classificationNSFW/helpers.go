@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,8 +28,8 @@ import (
 	"strconv"
 	"strings"
 
-	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	gen "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
+	cf "github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
+	gen "github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
 )
 
 func toBase64(b []byte) string {

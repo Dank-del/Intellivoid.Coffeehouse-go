@@ -4,8 +4,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/nlp/langDetect"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/nlp/langDetect"
 )
 
 func TestLangDetect(t *testing.T) {

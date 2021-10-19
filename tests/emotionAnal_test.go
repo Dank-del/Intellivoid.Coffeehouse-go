@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/nlp/emotionAnalysis"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/nlp/emotionAnalysis"
 )
 
 func TestEmotionAnal(t *testing.T) {

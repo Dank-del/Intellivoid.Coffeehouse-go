@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 package posTagging
 
-import cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+import cf "github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
 
 type POSApiResponse struct {
 	Success      bool      `json:"success"`

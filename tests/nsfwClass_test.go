@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,15 +20,15 @@ package tests
 import (
 	"testing"
 
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
-	"github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse/mediaProcessing/classificationNSFW"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/generalization"
+	"github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse/mediaProcessing/classificationNSFW"
 )
 
 func TestNSFWClassification(t *testing.T) {
 	coffeehouse.SetKey(returnKey())
 
-	res, err := classificationNSFW.ClassifyFile("nsfw/owo.jpg")
+	res, err := classificationNSFW.ClassifyFile("owo.jpg")
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -44,7 +44,7 @@ func TestNSFWClassificationWithGen(t *testing.T) {
 	}
 
 	res, err :=
-		classificationNSFW.ClassifyWithGeneralize("nsfw/owo.jpg", g)
+		classificationNSFW.ClassifyWithGeneralize("owo.jpg", g)
 	if err != nil {
 		t.Errorf(err.Error())
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of Intellivoid.Coffeehouse-go (https://github.com/Dank-del/Intellivoid.Coffeehouse-go).
+ * This file is part of Intellivoid.Coffeehouse-go (https://github.com/intellivoid/Intellivoid.Coffeehouse-go).
  * Copyright (c) 2021 Sayan Biswas, ALiwoto.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import (
 	"net/http"
 	"net/url"
 
-	cf "github.com/Dank-del/Intellivoid.Coffeehouse-go/coffeehouse"
+	cf "github.com/intellivoid/Intellivoid.Coffeehouse-go/coffeehouse"
 )
 
 func TagPOSFull(inp, lang, sen string) (pos *POSApiResponse, err error) {
